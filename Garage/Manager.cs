@@ -81,6 +81,7 @@ class Manager
 
     private void AddVehicle()
     {
+
         Tuple<string, string, uint, string> vehicleDetails = _cui.AskForVehicleDetails();
         int slot;
         switch (vehicleDetails.Item1)

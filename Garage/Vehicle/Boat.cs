@@ -7,4 +7,9 @@ class Boat : Vehicle
     {
         Length = length;
     }
+
+    public override string ToString()
+    {
+        return base.ToString() + $" Length: {Length}";
+    }
 }

@@ -70,6 +70,15 @@ class Garage<T> : IEnumerable<T>
 
     public IEnumerable<T?> SearchByProps(string vehicleType, string color, uint? wheelCount)
     {
+        //result
+
+        //if vehicletype == "Any"
+        
+        //if vehicletype == "Any"
+
+
+
+
         var firstSelection = vehicleType.Equals("any", StringComparison.OrdinalIgnoreCase)
             ? _storage
             : _storage.Where(v =>
@@ -86,6 +95,6 @@ class Garage<T> : IEnumerable<T>
                 ? secondSelection
                 : secondSelection.Where(v => v != null && v.WheelCount == wheelCount);
 
-        return thirdSelection;
+        return thirdSelection.ToList();
     }
 }

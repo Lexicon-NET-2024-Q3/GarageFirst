@@ -15,15 +15,15 @@ class GarageHandler : IHandler
 
     public void ListAllVehicles()
     {
-        garage.Select(v => $"{v.RegNr}");
+        //Return
+        // garage.Select(v => v.ToString()); // $"{v.RegNr}");
         garage.ToList().ForEach(Console.WriteLine);
     }
 
     public int AddVehicle(IVehicle vehicle)
     {
-        if (garage != null)
-        {
-            var alreadyExistsCheck = garage.Find(vehicle.RegNr);
+        //Is garage full?
+            var alreadyExistsCheck = garage.FirstOrDefault(v => v.RegNr == vehicle.RegNr);
             if (alreadyExistsCheck == null)
             {
                 return garage.Add(vehicle);
@@ -32,23 +32,16 @@ class GarageHandler : IHandler
             {
                 return -2;
             }
-        }
-        throw new ArgumentNullException();
     }
 
     public int RemoveVehicle(string regNr)
     {
-        if (garage != null)
-        {
             return garage.Remove(regNr);
-        }
-        throw new ArgumentNullException();
     }
 
     public void FindByRegNr(string regNr)
     {
-        if (garage != null)
-        {
+       
             var vehicle = garage.Find(regNr);
             if (vehicle == null)
             {
@@ -60,26 +53,25 @@ class GarageHandler : IHandler
             {
                 System.Console.WriteLine(vehicle.ToString());
             }
-        }
-        else
-        {
-            throw new ArgumentNullException();
-        }
+        
+      
     }
 
     public void ListVehiclesByCategory()
     {
-        if (garage != null)
-        {
-            var enumerator = garage.GetEnumerator();
-            int cars = 0;
+
+        //var res = garage.GroupBy(v => v.GetType().Name)
+        //                .Select(g => new ListVehicle{ VehicleType = g.Key, Count = g.Count() });
+
+        int cars = 0;
             int boats = 0;
             int airplanes = 0;
             int motorcycles = 0;
             int buses = 0;
-            while (enumerator.MoveNext())
+        foreach (var item in garage)
+        {
             {
-                switch (enumerator.Current.GetType().Name)
+                switch (item.GetType().Name)
                 {
                     case "Car":
                         cars++;
@@ -101,20 +93,18 @@ class GarageHandler : IHandler
                         break;
                 }
             }
+
+        }
             System.Console.WriteLine(
                 $"Cars: {cars}; Buses: {buses}; Motorcycles: {motorcycles}; Boats: {boats}; Airplanes: {airplanes}"
             );
-        }
-        else
-        {
-            throw new ArgumentNullException();
-        }
+        
+     
     }
 
     public void PopulateGarage()
     {
-        if (garage != null)
-        {
+      
             if (hasPopulated)
             {
                 System.Console.WriteLine("The garage has already been populated");
@@ -133,17 +123,12 @@ class GarageHandler : IHandler
             garage.Populate(vehicles);
             hasPopulated = true;
             System.Console.WriteLine("Garage successfully populated");
-        }
-        else
-        {
-            throw new ArgumentNullException();
-        }
+    
     }
 
     public void SearchByProps(string vehicleType, string color, uint? wheelCount)
     {
-        if (garage != null)
-        {
+    
             var targetVehicles = garage.SearchByProps(vehicleType, color, wheelCount);
 
             if (!targetVehicles.Any())
@@ -160,10 +145,5 @@ class GarageHandler : IHandler
                     }
                 }
             }
-        }
-        else
-        {
-            throw new ArgumentNullException();
-        }
     }
 }
