@@ -14,13 +14,13 @@ class Manager
     {
         while (true)
         {
-            UserAction input = _cui.ShowMainMenu(_garageCreated);
+            UserAction input = _cui.ShowMainMenu();
 
             switch (input)
             {
-                case UserAction.CreateNewGarage:
-                    CreateNewGarage();
-                    break;
+                //case UserAction.CreateNewGarage:
+                //    CreateNewGarage();
+                //    break;
                 case UserAction.ListAll:
                     _handler.ListAllVehicles();
                     break;
@@ -170,13 +170,13 @@ class Manager
         }
     }
 
-    void CreateNewGarage()
-    {
-        uint capacity = _cui.AskForUint(
-            query: "Enter capacity for the new garage:",
-            successFeedback: $"A new garage was succesfully created!"
-        );
-        _handler.Create(capacity);
-        _garageCreated = true;
-    }
+    //void CreateNewGarage()
+    //{
+    //    uint capacity = _cui.AskForUint(
+    //        query: "Enter capacity for the new garage:",
+    //        successFeedback: $"A new garage was succesfully created!"
+    //    );
+    //    _handler.Create(capacity);
+    //    _garageCreated = true;
+    //}
 }

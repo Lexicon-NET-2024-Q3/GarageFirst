@@ -3,11 +3,10 @@ using System.Transactions;
 
 class ConsoleUI : IUI
 {
-    public UserAction ShowMainMenu(bool garageAlreadyExists = true)
+    public UserAction ShowMainMenu()
     {
         Log("Welcome to the Garage Management" + "\n1. Create a new garage");
-        if (garageAlreadyExists)
-        {
+     
             Log(
                 "2. Populate garage"
                     + "\n3. Add vehicle"
@@ -17,18 +16,18 @@ class ConsoleUI : IUI
                     + "\n7. Search vehicles by property"
                     + "\n8. Find vehicle by registration number"
             );
-        }
+        
         Log("0. Exit");
 
         while (true)
         {
             var input = Console.ReadLine();
 
-            if (!garageAlreadyExists && input != "1" && input != "0")
-            {
-                Log("Invalid input");
-                continue;
-            }
+            //if (!garageAlreadyExists && input != "1" && input != "0")
+            //{
+            //    Log("Invalid input");
+            //    continue;
+            //}
 
             switch (input)
             {
