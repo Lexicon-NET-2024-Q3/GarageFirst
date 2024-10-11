@@ -15,7 +15,8 @@ class GarageHandler : IHandler
 
     public void ListAllVehicles()
     {
-        garage?.PerformOnAll((v) => Console.WriteLine(v));
+        garage.Select(v => $"{v.RegNr}");
+        garage.ToList().ForEach(Console.WriteLine);
     }
 
     public int AddVehicle(IVehicle vehicle)

@@ -77,7 +77,7 @@ class ConsoleUI : IUI
 
     private void Log(string m)
     {
-        System.Console.WriteLine(m);
+        Console.WriteLine(m);
     }
 
     public Tuple<string, string, uint, string> AskForVehicleDetails()

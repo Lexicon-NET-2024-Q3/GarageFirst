@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Garage.Test")]
 
-class Garage<T> : IEnumerable
+class Garage<T> : IEnumerable<T>
     where T : IVehicle
 {
     private T?[] _storage;
@@ -26,16 +26,16 @@ class Garage<T> : IEnumerable
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public void PerformOnAll(Action<T> action)
-    {
-        foreach (var item in _storage)
-        {
-            if (item != null)
-            {
-                action?.Invoke(item);
-            }
-        }
-    }
+    //public void PerformOnAll(Action<T> action)
+    //{
+    //    foreach (var item in _storage)
+    //    {
+    //        if (item != null)
+    //        {
+    //            action?.Invoke(item);
+    //        }
+    //    }
+    //}
 
     //Returns the slot where vehicle was parked, and -1 if garage is full
     public int Add(T vehicle) => _storage.Push(vehicle);
